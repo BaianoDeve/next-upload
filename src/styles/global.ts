@@ -9,7 +9,17 @@ export default createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.colors.bgColor};
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.title};
     font: 400 16px Roboto, sans-serif;
+  }
+
+  a,
+  input,
+  button {
+    font: 400 16px Roboto, sans-serif;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;

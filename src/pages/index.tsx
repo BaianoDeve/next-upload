@@ -1,25 +1,61 @@
 import Head from 'next/head';
 import { NextPage } from 'next';
 
-import Image from 'next/image'
+import { Header } from '~/components/Header';
+import { SerieRow } from '~/components/SerieRow';
+import {
+  Container,
+  Title,
+  Hero,
+  TitleHero,
+  Search,
+  SearchButton,
+  SearchInput
+} from '~/styles/pages/home';
 
-import Logo2 from '../../public/Logo.png'
-import LogoImg from '../assets/Logo.svg';
+import SearchIcon from '../assets/icons/Search.svg';
+
+const user = {
+  name: 'Renan Alves'
+};
+
+const lancamentosList = [
+  {
+    serie: {
+      id: 1,
+      name: '',
+      capa: ''
+    }
+  }
+];
 
 const PageComponent: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
-        <link rel="icon" href="/IconAzul.png"/>
-        <title>Home</title>
+        <title>Home | Brotheragem Scan</title>
       </Head>
-
-      <main>
-        <LogoImg />
-        <Image src={Logo2} alt="logo" />
-        <h1>Hello World</h1>
-      </main>
-    </div>
+      <Header />
+      <Hero>
+        <TitleHero>{user.name} Bem Vindo a Brotheragem Scan!</TitleHero>
+        <Search>
+          <SearchInput
+            type="text"
+            placeholder="Encontre a sua obra favorita da Brotheragem Scan..."
+          />
+          <SearchButton>
+            <SearchIcon />
+          </SearchButton>
+        </Search>
+      </Hero>
+      <Container
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <Title>Home</Title>
+      </Container>
+    </>
   );
 };
 

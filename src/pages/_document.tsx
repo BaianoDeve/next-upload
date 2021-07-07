@@ -48,8 +48,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-        <link rel="shortcut icon" href="/IconBrother.png" size="32x32"/>
-
+          <link rel="shortcut icon" href="/IconBrother.png" />
         </Head>
         <body>
           <Main />

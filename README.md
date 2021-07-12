@@ -13,8 +13,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Clone o projeto e acesse a pasta do mesmo.
 
 ```bash
-$ git clone https://github.com/BaianoDeve/next-setup [Nome do Projeto]
-$ cd Nlw-06-rota-React-js [Nome do Projeto]
+$ git clone https://github.com/BaianoDeve/next-setup [Nome-do-Projeto]
+$ cd Nlw-06-rota-React-js [Nome-do-Projeto]
 ```
 
 Para iniciá-lo, siga os passos abaixo:

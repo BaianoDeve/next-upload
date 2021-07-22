@@ -1,25 +1,53 @@
-import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 
-import Image from 'next/image'
+import { uniqueId, concat } from 'lodash';
+import filesize from 'filesize';
 
-import Logo2 from '../../public/Logo.png'
-import LogoImg from '../assets/Logo.svg';
+import { Container, Content } from '../styles/pages/home';
+import { Upload } from '../components/Upload';
+import { FileList } from '../components/FileList';
+
+import { useUploadFiles } from '../context/UploadContext';
+
+export interface UploadedFile {
+  file: File;
+  id: string;
+  name: string;
+  readableSize: string;
+  preview: string;
+  progress: number;
+  uploaded: boolean;
+  error: boolean;
+  url: string | null;
+}
 
 const PageComponent: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <link rel="icon" href="/IconAzul.png"/>
-        <title>Home</title>
-      </Head>
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
 
-      <main>
-        <LogoImg />
-        <Image src={Logo2} alt="logo" />
-        <h1>Hello World</h1>
-      </main>
-    </div>
+  const handleUpload = (files: File[]) => {
+    const newUploadFiles = files.map(file => ({
+      file,
+      id: uniqueId(),
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null
+    }));
+
+    setUploadedFiles(concat(uploadedFiles, newUploadFiles));
+  };
+
+  return (
+    <Container>
+      <Content>
+        <Upload handleUpload={handleUpload} />
+        {!!uploadedFiles.length && <FileList files={uploadedFiles} />}
+      </Content>
+    </Container>
   );
 };
 
